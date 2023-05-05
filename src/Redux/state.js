@@ -1,5 +1,8 @@
 const state = {
-  user: [],
+  user: [
+    {username: "123",
+    password: "123"}
+  ],
   businesses: [
     {
       id: 1,

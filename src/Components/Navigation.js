@@ -20,7 +20,7 @@ const handleClearCookiesClick = () => {
   window.location.reload(false)
 }
 
-export default function Navigation() {
+export default function Navigation(props) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -55,7 +55,7 @@ export default function Navigation() {
       <AppBar>
         {checkAuth() ? (
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            You are logged in
+            You are logged is as {props.user.username}
           </Typography>
         ) : (
           <></>

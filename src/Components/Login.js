@@ -1,67 +1,88 @@
-import React, { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { TextField, Button, Container } from "@mui/material"
+import * as React from "react"
+import TextField from "@mui/material/TextField"
+import Button from "@mui/material/Button"
+import { styled } from "@mui/material/styles"
+import Stack from "@mui/material/Stack"
+import { Component } from "react"
+import { Fragment } from "react"
+import { useNavigate } from "react-router"
 
-const Login = () => {
-  const navigate = useNavigate()
+const ColorButton = styled(Button)(({ theme }) => ({
+  backgroundColor: "#3F51B5",
+  "&:hover": {
+    backgroundColor: "#3F51B5",
+  },
+}))
 
-  const [state, setState] = useState({
+
+class Login extends Component {
+  // navigate = useNavigate()
+
+  state = {
     username: "",
     password: "",
-  })
-
-  const handleTextChange = (e) => {
-    const { name, value } = e.target
-    setState((prevState) => {
-      return {
-        ...prevState,
-        [name]: value,
-      }
-    })
+  }
+  handleTextChange = (e) => {
+    const newState = { ...this.state }
+    newState[e.target.id] = e.target.value
+    this.setState(newState)
   }
 
-  
-
-  const login = (e) => {
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const payload = { ...this.state }
+    // payload.id = this.props.businessTotal + 1
+    delete payload.open
+    console.log("THE BUSINESS", payload)
+    this.props.addUser(payload)
+    this.setState({
+      open: false,
+      username: "",
+      password: "",
+    })
     e.preventDefault()
     document.cookie = "loggedin=True;max-age=60*1000"
 
-    navigate("/")
+    // navigate("/")
     window.location.reload(false)
   }
 
-  return (
-    <div className="App">
-      <Container maxWidth="sm">
-        <form className="login-form" onSubmit={login}>
-          <TextField
-            required
-            onChange={handleTextChange}
-            value={state.username}
-            name="username"
-            label="Username"
-            type="text"
-          />
-          <TextField
-            required
-            onChange={handleTextChange}
-            value={state.password}
-            name="password"
-            label="Password"
-            type="password"
-          />
-          <Button
-            type="submit"
-            className="login-button"
-            variant="contained"
-            color="primary"
-          >
-            Login
-          </Button>
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.open !== this.state.open) {
+      this.setState({
+        username: "",
+        password: "",
+      })
+    }
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <form onSubmit={this.handleSubmit}>
+          <Stack>
+            <TextField
+              id="name"
+              label="Name"
+              variant="standard"
+              value={this.state.username}
+              onChange={this.handleTextChange}
+            />
+            <TextField
+              id="address"
+              label="Address"
+              variant="standard"
+              value={this.state.password}
+              onChange={this.handleTextChange}
+            />
+            <ColorButton variant="contained" type="submit">
+              Save
+            </ColorButton>
+          </Stack>
         </form>
-      </Container>
-    </div>
-  )
+      </Fragment>
+    )
+  }
 }
 
 export default Login

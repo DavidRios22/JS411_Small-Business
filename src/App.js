@@ -4,7 +4,7 @@ import { Provider } from "react-redux"
 import { BrowserRouter } from "react-router-dom"
 import Router from "./Router"
 import store from "./Redux/store"
-import Navigation from "./Components/Navigation"
+import Navigation from "./Containers/Navigation"
 
 function App() {
   return (
