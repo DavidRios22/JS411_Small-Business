@@ -1,31 +1,36 @@
 import React from "react"
-import { Switch, Route, Redirect } from "react-router"
+import { Routes, Route, Navigate } from "react-router"
 import Listings from "./Containers/Listings"
 import Business from "./Containers/Business"
 import AddPage from "./Containers/AddPage"
 import Login from "./Components/Login"
+import cookie from "cookie"
 
-const checkAuth = (props) => false
+const checkAuth = () => {
+  const cookies = cookie.parse(document.cookie)
+  return cookies["loggedin"] ? true : false
+}
 
 const ProtectedRoute = (props) => {
   const { component: Component, ...rest } = props
+  debugger
 
   return checkAuth() === true ? (
     <Component {...rest} />
   ) : (
-    <Redirect to="/login" />
+    <Navigate to="/login" />
   )
-  
 }
 
 const Router = () => {
   return (
-    <Switch>
-      <Route exact path="/" component={Listings} />
-      <Route path="/business/:id" component={Business} />
+    <Routes>
+      <Route exact path="/" element={<Listings/>} />
+      <Route path="/business/:id" element={<Business/>} />
       <Route path="/addpage" element={<ProtectedRoute component={AddPage} />} />
-      <Route path ="/login" component={Login} />
-    </Switch>
+      {/* <Route path="/addpage" component={AddPage} /> */}
+      <Route path="/login" element={<Login/>} />
+    </Routes>
   )
 }
 

@@ -1,4 +1,5 @@
 const state = {
+  user: [],
   businesses: [
     {
       id: 1,

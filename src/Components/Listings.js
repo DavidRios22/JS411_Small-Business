@@ -8,9 +8,16 @@ import TableRow from "@mui/material/TableRow"
 import Paper from "@mui/material/Paper"
 import { Link } from "react-router-dom"
 import DeleteIcon from "@mui/icons-material/Delete"
+import cookie from "cookie"
+
+const checkAuth = () => {
+  const cookies = cookie.parse(document.cookie)
+  return cookies["loggedin"] ? true : false
+}
 
 
-export default function Listings(props)  {
+
+export default function Listings(props) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -35,12 +42,14 @@ export default function Listings(props)  {
               <TableCell>{business.description}</TableCell>
               <TableCell align="right">{business.hours}</TableCell>
               <TableCell align="right">{business.address}</TableCell>
-              <TableCell>
-                <DeleteIcon
-                  onClick={() => props.removeBusiness(idx)}
-                  sx={{ color: "#FF0000"}}
-                />
-              </TableCell>
+              {checkAuth() === true && (
+                <TableCell>
+                  <DeleteIcon
+                    onClick={() => props.removeBusiness(idx)}
+                    sx={{ color: "#FF0000" }}
+                  />
+                </TableCell>
+              )}
             </TableRow>
           ))}
         </TableBody>
@@ -48,4 +57,3 @@ export default function Listings(props)  {
     </TableContainer>
   )
 }
-

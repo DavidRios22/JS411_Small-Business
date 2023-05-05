@@ -11,3 +11,17 @@ export const removeBusiness = (index) => {
         value: index
     }
 }
+
+export const addUser = (user) => {
+    return {
+        type: "ADD_USER",
+        value: user
+    }
+}
+
+export const removeUser = (index) => {
+  return {
+    type: "REMOVE_USER",
+    value: index,
+  }
+}
