@@ -1,17 +1,11 @@
 import { connect } from "react-redux";
 import Login from "../Components/Login"
-import { removeUser } from "../Redux/actions";
-
-const mapStateToProps = (state) => {
-  return {
-    users: state.users,
-  }
-}
+import { addUser } from "../Redux/actions";
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeUser: (index) => dispatch(removeUser(index)),
+    addUser: (index) => dispatch(addUser(index)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(Login)

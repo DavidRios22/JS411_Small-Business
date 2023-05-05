@@ -1,7 +1,7 @@
 const state = {
-  user: [
-    {username: "123",
-    password: "123"}
+  users: [
+    {username: "",
+    password: ""}
   ],
   businesses: [
     {

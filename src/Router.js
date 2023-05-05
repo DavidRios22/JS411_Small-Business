@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router"
 import Listings from "./Containers/Listings"
 import Business from "./Containers/Business"
 import AddPage from "./Containers/AddPage"
-import Login from "./Components/Login"
+import Login from "./Containers/Login"
 import cookie from "cookie"
 
 const checkAuth = () => {

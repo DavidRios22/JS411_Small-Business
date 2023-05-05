@@ -21,6 +21,7 @@ const handleClearCookiesClick = () => {
 }
 
 export default function Navigation(props) {
+  let last = props.users[props.users.length - 1]
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -55,7 +56,7 @@ export default function Navigation(props) {
       <AppBar>
         {checkAuth() ? (
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            You are logged is as {props.user.username}
+            You are logged is as {last.username}
           </Typography>
         ) : (
           <></>
