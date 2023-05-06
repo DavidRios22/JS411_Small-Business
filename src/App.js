@@ -5,13 +5,15 @@ import { BrowserRouter } from "react-router-dom"
 import Router from "./Router"
 import store from "./Redux/store"
 import Navigation from "./Containers/Navigation"
+import MapDisplay from "./Components/Map"
 
 function App() {
   return (
       <Provider store={store}>
         <BrowserRouter>
-          <Navigation />
-          <Router />
+          {/* <Navigation /> */}
+          {/* <Router /> */}
+          <MapDisplay />
         </BrowserRouter>
       </Provider>
   )

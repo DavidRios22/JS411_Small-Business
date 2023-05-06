@@ -22,6 +22,7 @@ const handleClearCookiesClick = () => {
 
 export default function Navigation(props) {
   let last = props.users[props.users.length - 1]
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
