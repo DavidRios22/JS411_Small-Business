@@ -4,7 +4,7 @@ import Geocode from "react-geocode"
 
 export default function MapDisplay() {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDrx-c3m3oUOd1daQbJTLoiWgwvKvDtRAc",
+    googleMapsApiKey: "",
   })
 
   if (!isLoaded) return <div>Loading...</div>
@@ -12,7 +12,7 @@ export default function MapDisplay() {
 }
 
 function Map() {
-  Geocode.setApiKey("AIzaSyDrx-c3m3oUOd1daQbJTLoiWgwvKvDtRAc")
+  Geocode.setApiKey("")
   Geocode.setLocationType("ROOFTOP")
   Geocode.enableDebug()
 
