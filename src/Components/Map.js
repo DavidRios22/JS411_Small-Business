@@ -1,35 +1,44 @@
-import { useMemo } from "react"
+import { useState, useEffect } from "react"
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
 import Geocode from "react-geocode"
 
-
 export default function MapDisplay() {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "",
+    googleMapsApiKey: "AIzaSyDrx-c3m3oUOd1daQbJTLoiWgwvKvDtRAc",
   })
 
   if (!isLoaded) return <div>Loading...</div>
   return <Map />
 }
 
-Geocode.setApiKey("")
-Geocode.setLocationType("ROOFTOP")
-Geocode.enableDebug()
-Geocode.fromAddress("30123 Sawgrass Trail Georgetown").then(
-  (response) => {
-    const { lat, lng } = response.results[0].geometry.location
-    console.log(lat, lng)
-  },
-  (error) => {
-    console.error(error)
-  }
-)
-
-
-
 function Map() {
-  console.log(Response);
-  const center = useMemo(() => ({ lat: 30.7091729, lng: -97.6769609 }), [])
+  Geocode.setApiKey("AIzaSyDrx-c3m3oUOd1daQbJTLoiWgwvKvDtRAc")
+  Geocode.setLocationType("ROOFTOP")
+  Geocode.enableDebug()
+
+  const [response, setResponse] = useState([])
+
+  useEffect(() => {
+    Geocode.fromAddress("30123 Sawgrass Trail Georgetown").then(
+      (response) => {
+        setResponse(response.results[0].geometry.location)
+      },
+      (error) => {
+        console.error(error)
+      }
+    )
+  }, [])
+
+
+  const lattitude = response.lat
+  const longitute = response.lng
+
+
+  const center = {
+    lat: lattitude,
+    lng: longitute,
+  }
+
 
   return (
     <GoogleMap zoom={10} center={center} mapContainerClassName="map-container">
