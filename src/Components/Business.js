@@ -4,6 +4,7 @@ import CardActions from "@mui/material/CardActions"
 import CardContent from "@mui/material/CardContent"
 import Typography from "@mui/material/Typography"
 import { useParams } from "react-router"
+import MapDisplay from "./Map"
 
 export default function Business (props) {
   // const id = props.match.params.id
@@ -25,6 +26,7 @@ export default function Business (props) {
           {business.hours}
         </Typography>
         <Typography variant="body2">{business.description}</Typography>
+        <MapDisplay address={business.address} />
       </CardContent>
       <CardActions></CardActions>
     </Card>

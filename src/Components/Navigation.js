@@ -54,7 +54,7 @@ export default function Navigation(props) {
           )}
         </Toolbar>
       </AppBar>
-      <AppBar>
+      <AppBar position="static">
         {checkAuth() ? (
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             You are logged is as {last.username}

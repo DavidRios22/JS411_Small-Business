@@ -2,24 +2,25 @@ import { useState, useEffect } from "react"
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
 import Geocode from "react-geocode"
 
-export default function MapDisplay() {
+export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "",
   })
 
   if (!isLoaded) return <div>Loading...</div>
-  return <Map />
+  return <Map address={props.address}/>
 }
 
-function Map() {
+function Map(props) {
   Geocode.setApiKey("")
   Geocode.setLocationType("ROOFTOP")
   Geocode.enableDebug()
 
   const [response, setResponse] = useState([])
 
+
   useEffect(() => {
-    Geocode.fromAddress("30123 Sawgrass Trail Georgetown").then(
+    Geocode.fromAddress(props.address).then(
       (response) => {
         setResponse(response.results[0].geometry.location)
       },

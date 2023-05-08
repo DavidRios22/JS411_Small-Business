@@ -11,9 +11,8 @@ function App() {
   return (
       <Provider store={store}>
         <BrowserRouter>
-          {/* <Navigation /> */}
-          {/* <Router /> */}
-          <MapDisplay />
+          <Navigation />
+          <Router />
         </BrowserRouter>
       </Provider>
   )
